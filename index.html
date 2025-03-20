@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Process Tracker</h1>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <input type="text" id="softwareName" placeholder="Software Name">
+            <textarea id="stepDetails" placeholder="Step-by-step process"></textarea>
+            <select id="feeling">
+                <option value="green">Good</option>
+                <option value="yellow">Neutral</option>
+                <option value="red">Poor</option>
+            </select>
+            <button onclick="addProcess()">Add Process</button>
+        </div>
+
+        <!-- Filters and Sorting -->
+        <div class="filter-section">
+            <input type="text" id="searchInput" placeholder="Search by software name..." onkeyup="filterProcesses()" />
+            <select id="sortOptions" onchange="sortProcesses()">
+                <option value="">Sort By</option>
+                <option value="name">Name</option>
+                <option value="rating">Rating</option>
+            </select>
+            <button onclick="filterByColor('green')">Good</button>
+            <button onclick="filterByColor('yellow')">Neutral</button>
+            <button onclick="filterByColor('red')">Poor</button>
+            <button onclick="resetFilters()">Reset Filters</button>
+        </div>
+
+        <div class="main-container">
+        <!-- Overview Chart -->
+            <div class="chart-section">
+                <h2>Task Overview</h2>
+                <canvas id="overviewChart"></canvas>
+            </div>
+
+            <!-- Process List with Pagination -->
+            <div id="processList"></div>
+            <div class="pagination">
+                <button onclick="previousPage()">Previous</button>
+                <span id="pageInfo"></span>
+                <button onclick="nextPage()">Next</button>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <button class="export-btn" onclick="exportPDF()">Export to PDF</button>
+        <button class="export-btn" onclick="downloadAllSteps()">Download All Steps</button>
+
+    </div>
+
+    <!-- Popup View -->
+    <div id="popupView" class="popup hidden">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">O</button>
+            <h2 id="popupTitle"></h2>
+            <p id="popupSteps"></p>
+            <small id="popupDate"></small>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
