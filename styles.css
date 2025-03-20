@@ -1,0 +1,316 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.input-section, .filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, textarea, select, button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    flex: 1;
+    resize: none;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.process-card {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.green { background-color: #d4edda; }
+.yellow { background-color: #fff3cd; }
+.red { background-color: #f8d7da; }
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #28a745;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.edit-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.export-btn {
+    margin-top: 20px;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.export-btn:hover {
+    background-color: #5a6268;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.input-section, .filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+input, textarea, select, button {
+    padding: 10px;
+    border: 1px solid #f7e010;
+    border-radius: 15px;
+    font-size: 1rem;
+}
+
+textarea {
+    flex: 10;
+    resize: none;
+    
+}
+
+#stepDetails {
+    flex: 10;
+    resize: none;
+    background-color: #e7a6a6;
+    height: 100px;
+    width: 50px;
+
+}
+
+#softwareName {
+    height: 30px;
+}
+
+#feeling {
+    height: 45px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    height: 40px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.process-card {
+    display: flex;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.green { background-color: #d4edda; }
+.yellow { background-color: #fff3cd; }
+.red { background-color: #f8d7da; }
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.export-btn {
+    margin-top: 20px;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: auto; /* add scroll bar */
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 25px;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #2c2c2c;
+    font-family: 'segoe UI', sans-serif;
+    max-height: 80vh; /* Adjusting height as needed */
+    overflow-y: auto; /* add scroll bar */
+    width: 80%; /* Adjust the width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: relative;
+    max-width: 500px;
+}
+
+#popupSteps {
+    white-space: pre-wrap;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #333;
+    word-wrap: break-word;
+}
+
+#popupSteps a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+#popupSteps a:hover {
+    color: #0056b3;
+}
+
+
+
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.close-btn:hover {
+    background: #c82333;
+}
+
+
+/* Main container for process list and chart */
+.main-container {
+    display: flex;
+    justify-content: space-between; /* Adds space between process list and chart */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Adds spacing between the two sections */
+    padding: 20px;
+}
+
+/* Style for the process list */
+.process-list {
+    flex: 2; /* Takes more space compared to the chart */
+    max-width: 80%; /* Ensures it doesn’t stretch too wide */
+    overflow-y: auto; /* Scroll if the content overflows */
+    padding-right: 30px; /* Adds spacing on the right */
+}
+
+/* Style for the chart section */
+.chart-section {
+    flex: 1; /* Smaller width compared to the process list */
+    max-width: 400px; /* Fixes the width of the chart container */
+    text-align: center; /* Centers the chart content */
+}
+
+
+canvas {
+    max-width: 400px;
+    max-height: 400px;
+    display: block;
+    margin: left;
+   /* margin: 0 auto; */
+
+}
+.download-btn {
+    background-color: #17a2b8;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.download-btn:hover {
+    background-color: #138496;
+}
