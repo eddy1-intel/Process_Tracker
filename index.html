@@ -9,62 +9,101 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Process Tracker</h1>
+    <div class="container ios-shell">
+        <header class="app-header">
+            <div>
+                <h1>Process Tracker</h1>
+                <p class="subtitle">Track your workflows, attach screenshots, and keep every process easy to revisit.</p>
+            </div>
+            <span class="header-badge">Workflow Journal</span>
+        </header>
 
-        <!-- Input Section -->
-        <div class="input-section">
-            <input type="text" id="softwareName" placeholder="Software Name">
-            <textarea id="stepDetails" placeholder="Step-by-step process"></textarea>
-            <select id="feeling">
-                <option value="green">Good</option>
-                <option value="yellow">Neutral</option>
-                <option value="red">Poor</option>
-            </select>
-            <button onclick="addProcess()">Add Process</button>
-        </div>
+        <section class="card composer-card">
+            <h2 class="section-title">Add or Update Process</h2>
+            <div class="input-section">
+                <input type="text" id="softwareName" placeholder="Software Name">
+                <input type="text" id="categoryInput" placeholder="Category (e.g. Validation, Reporting)">
+                <input type="text" id="tagsInput" placeholder="Tags (comma separated)">
+                <textarea id="stepDetails" placeholder="Step-by-step process"></textarea>
+                <div id="imageDropZone" class="image-upload-wrap">
+                    <label for="stepImage">Attach Photo (optional)</label>
+                    <small class="drop-hint">Drop an image here or click to browse</small>
+                    <input type="file" id="stepImage" accept="image/*">
+                    <div id="imagePreview" class="image-preview hidden"></div>
+                    <button id="removeImageBtn" type="button" class="secondary-btn hidden" onclick="removeSelectedImage()">Remove Photo</button>
+                </div>
+                <select id="feeling" aria-label="Process Rating">
+                    <option value="green">Good</option>
+                    <option value="yellow">Neutral</option>
+                    <option value="red">Poor</option>
+                </select>
+                <button id="saveProcessBtn" onclick="addProcess()">Add Process</button>
+                <button id="cancelEditBtn" class="secondary-btn hidden" onclick="cancelEdit()">Cancel Edit</button>
+            </div>
+        </section>
 
-        <!-- Filters and Sorting -->
-        <div class="filter-section">
-            <input type="text" id="searchInput" placeholder="Search by software name..." onkeyup="filterProcesses()" />
-            <select id="sortOptions" onchange="sortProcesses()">
-                <option value="">Sort By</option>
-                <option value="name">Name</option>
-                <option value="rating">Rating</option>
-            </select>
-            <button onclick="filterByColor('green')">Good</button>
-            <button onclick="filterByColor('yellow')">Neutral</button>
-            <button onclick="filterByColor('red')">Poor</button>
-            <button onclick="resetFilters()">Reset Filters</button>
-        </div>
+        <section class="card filters-card">
+            <h2 class="section-title">Find and Filter</h2>
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search name, steps, tags..." onkeyup="filterProcesses()" />
+                <select id="categoryFilter" onchange="filterProcesses()">
+                    <option value="">All Categories</option>
+                </select>
+                <input type="text" id="tagFilter" placeholder="Filter by tag" onkeyup="filterProcesses()" />
+                <select id="sortOptions" onchange="sortProcesses()">
+                    <option value="">Sort By</option>
+                    <option value="name">Name</option>
+                    <option value="rating">Rating</option>
+                    <option value="category">Category</option>
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+                <button class="tone-btn good" onclick="filterByColor('green')">Good</button>
+                <button class="tone-btn neutral" onclick="filterByColor('yellow')">Neutral</button>
+                <button class="tone-btn poor" onclick="filterByColor('red')">Poor</button>
+                <button class="soft-btn" onclick="resetFilters()">Reset Filters</button>
+            </div>
+        </section>
 
         <div class="main-container">
-        <!-- Overview Chart -->
-            <div class="chart-section">
+            <section class="card list-card">
+                <h2 class="section-title">Process Timeline</h2>
+                <div id="processList"></div>
+                <div class="pagination">
+                    <button class="soft-btn" onclick="previousPage()">Previous</button>
+                    <span id="pageInfo"></span>
+                    <button class="soft-btn" onclick="nextPage()">Next</button>
+                </div>
+            </section>
+
+            <section class="card chart-section">
                 <h2>Task Overview</h2>
                 <canvas id="overviewChart"></canvas>
-            </div>
-
-            <!-- Process List with Pagination -->
-            <div id="processList"></div>
-            <div class="pagination">
-                <button onclick="previousPage()">Previous</button>
-                <span id="pageInfo"></span>
-                <button onclick="nextPage()">Next</button>
-            </div>
+            </section>
         </div>
 
-        <!-- Export Section -->
-        <button class="export-btn" onclick="exportPDF()">Export to PDF</button>
-        <button class="export-btn" onclick="downloadAllSteps()">Download All Steps</button>
+        <section class="card export-card">
+            <h2 class="section-title">Export and Backup</h2>
+            <div class="export-grid">
+                <button class="export-btn" onclick="exportPDF()">Export to PDF</button>
+                <button class="export-btn" onclick="downloadAllSteps()">Download All Steps</button>
+                <button class="export-btn" onclick="backupData()">Backup Data (JSON)</button>
+                <button class="export-btn" onclick="triggerRestore()">Restore Data (JSON)</button>
+                <input type="file" id="restoreInput" accept="application/json" class="hidden">
+            </div>
+        </section>
 
     </div>
 
     <!-- Popup View -->
     <div id="popupView" class="popup hidden">
         <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">O</button>
+            <button class="close-btn" onclick="closePopup()">X</button>
             <h2 id="popupTitle"></h2>
+            <p id="popupMeta" class="popup-meta"></p>
+            <div id="popupImageWrap" class="popup-image-wrap hidden">
+                <img id="popupImage" alt="Process screenshot">
+            </div>
             <p id="popupSteps"></p>
             <small id="popupDate"></small>
         </div>
