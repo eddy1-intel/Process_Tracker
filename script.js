@@ -343,7 +343,7 @@ function previousPage() {
 
 async function addProcess() {
     const name = softwareNameInput ? softwareNameInput.value.trim() : "";
-    const category = categoryInput ? categoryInput.value.trim() || "General" : "General";
+    const category = categoryInput ? (categoryInput.value.trim() || "General") : "General";
     const tags = parseTags(tagsInput ? tagsInput.value : "");
     const rawSteps = stepDetailsInput ? stepDetailsInput.value.trim() : "";
     const feeling = feelingInput ? feelingInput.value : "green";
