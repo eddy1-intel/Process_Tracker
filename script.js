@@ -1,478 +1,827 @@
-:root {
-    --bg: #f4f5f7;
-    --bg-glow-1: #dbeaff;
-    --bg-glow-2: #e8f8ee;
-    --card: rgba(255, 255, 255, 0.88);
-    --card-solid: #ffffff;
-    --text: #101828;
-    --muted: #667085;
-    --line: rgba(15, 23, 42, 0.1);
-    --line-strong: rgba(15, 23, 42, 0.18);
-    --brand: #007aff;
-    --brand-pressed: #0062cc;
-    --ok: #34c759;
-    --warn: #ff9f0a;
-    --bad: #ff3b30;
-    --soft: #eef2f7;
-    --radius-lg: 22px;
-    --radius-md: 16px;
-    --radius-sm: 12px;
-    --shadow-lg: 0 22px 45px rgba(17, 24, 39, 0.12);
-    --shadow-sm: 0 6px 16px rgba(17, 24, 39, 0.08);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    color: var(--text);
-    font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background:
-        radial-gradient(circle at 14% 10%, var(--bg-glow-1) 0%, transparent 24%),
-        radial-gradient(circle at 88% 85%, var(--bg-glow-2) 0%, transparent 22%),
-        var(--bg);
-}
-
-.ios-shell {
-    width: 1180px;
-    max-width: 96vw;
-    margin: 22px auto 34px;
-    padding: 14px;
-}
-
-.app-header {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 22px;
-}
-
-h1 {
-    margin: 0;
-    font-size: clamp(1.48rem, 1.9vw, 2rem);
-    letter-spacing: -0.02em;
-}
-
-.subtitle {
-    margin: 6px 0 0;
-    color: var(--muted);
-    max-width: 720px;
-    font-size: 0.97rem;
-}
-
-.header-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #eef5ff;
-    border: 1px solid #cde0ff;
-    color: #2359b8;
-    border-radius: 999px;
-    padding: 8px 14px;
-    font-weight: 600;
-    font-size: 0.83rem;
-    white-space: nowrap;
-}
-
-.card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 18px;
-    margin-top: 14px;
-}
-
-.section-title {
-    margin: 0 0 12px;
-    font-size: 1.03rem;
-    letter-spacing: -0.01em;
-}
-
-.input-section,
-.filter-section {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 10px;
-}
-
-#softwareName,
-#categoryInput,
-#tagsInput {
-    grid-column: span 4;
-}
-
-#stepDetails {
-    grid-column: span 8;
-    min-height: 132px;
-    resize: vertical;
-}
-
-#feeling,
-#saveProcessBtn,
-#cancelEditBtn {
-    grid-column: span 2;
-}
-
-.image-upload-wrap {
-    grid-column: span 4;
-    border: 1px dashed var(--line-strong);
-    border-radius: var(--radius-md);
-    background: #fbfcfe;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.image-upload-wrap.drag-over {
-    border-color: var(--brand);
-    background: #edf4ff;
-}
-
-.image-upload-wrap label {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 500;
-}
-
-.drop-hint {
-    font-size: 0.8rem;
-    color: var(--muted);
-}
-
-#searchInput {
-    grid-column: span 3;
-}
-
-#categoryFilter,
-#tagFilter,
-#sortOptions {
-    grid-column: span 2;
-}
-
-.filter-section button {
-    grid-column: span 1;
-}
-
-input,
-textarea,
-select,
-button {
-    width: 100%;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    font-size: 0.95rem;
-    background: var(--card-solid);
-    color: var(--text);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    outline: none;
-    border-color: #89bcff;
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.18);
-}
-
-button {
-    border: none;
-    border-radius: 13px;
-    background: linear-gradient(180deg, #2890ff 0%, #007aff 100%);
-    color: #ffffff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.14s ease, filter 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-1px);
-    filter: brightness(0.97);
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-.secondary-btn,
-.soft-btn {
-    background: var(--soft);
-    color: #334155;
-    border: 1px solid var(--line);
-}
-
-.secondary-btn:hover,
-.soft-btn:hover {
-    background: #e6ebf2;
-}
-
-.tone-btn.good {
-    background: linear-gradient(180deg, #48d96b 0%, var(--ok) 100%);
-}
-
-.tone-btn.neutral {
-    background: linear-gradient(180deg, #ffb847 0%, var(--warn) 100%);
-}
-
-.tone-btn.poor {
-    background: linear-gradient(180deg, #ff6f67 0%, var(--bad) 100%);
-}
-
-.main-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(320px, 1fr);
-    gap: 14px;
-    align-items: start;
-    margin-top: 14px;
-}
-
-.list-card,
-.chart-section {
-    min-height: 100%;
-}
-
-#processList {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.process-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 12px;
-    padding: 14px;
-    background: #ffffff;
-    border-radius: 16px;
-    border: 1px solid var(--line);
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
-    animation: cardIn 0.24s ease;
-}
-
-.process-card.green {
-    border-left: 4px solid var(--ok);
-}
-
-.process-card.yellow {
-    border-left: 4px solid var(--warn);
-}
-
-.process-card.red {
-    border-left: 4px solid var(--bad);
-}
-
-.process-card strong {
-    font-size: 1.04rem;
-    display: inline-block;
-    margin-bottom: 2px;
-}
-
-.process-card small {
-    color: #475467;
-    line-height: 1.45;
-}
-
-.card-thumb {
-    width: 120px;
-    height: 82px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-top: 10px;
-    border: 1px solid var(--line);
-}
-
-.card-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: flex-end;
-    align-content: flex-start;
-    width: 260px;
-}
-
-.card-actions button {
-    min-width: 80px;
-    padding: 10px 12px;
-}
-
-.meta-pill {
-    display: inline-flex;
-    align-items: center;
-    margin-top: 8px;
-    margin-right: 6px;
-    border-radius: 999px;
-    border: 1px solid #d0d8e6;
-    background: #f4f7fc;
-    color: #334155;
-    font-size: 0.76rem;
-    font-weight: 500;
-    padding: 4px 8px;
-}
-
-.chart-section h2 {
-    margin: 0 0 10px;
-    font-size: 1.02rem;
-}
-
-canvas {
-    width: 100%;
-    max-width: 360px;
-    margin: 2px auto 0;
-    display: block;
-}
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 12px;
-    gap: 10px;
-}
-
-#pageInfo {
-    color: var(--muted);
-    font-size: 0.91rem;
-    text-align: center;
-    min-width: 110px;
-}
-
-.export-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-}
-
-.export-btn {
-    background: #1f2937;
-    color: #f8fafc;
-}
-
-.export-btn:hover {
-    background: #111827;
-}
-
-.image-preview {
-    width: 118px;
-    height: 84px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-    background: #f9fafb;
-}
-
-.image-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.popup {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(15, 23, 42, 0.55);
-}
-
-.popup-content {
-    width: min(760px, 100%);
-    max-height: 88vh;
-    overflow-y: auto;
-    background: #ffffff;
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    padding: 22px;
-}
-
-.popup-content h2 {
-    margin: 0;
-    padding-right: 42px;
-    text-align: left;
-}
-
-.popup-meta {
-    margin: 8px 0 0;
-    color: #475467;
-    line-height: 1.5;
-}
-
-.popup-image-wrap {
-    margin: 12px 0;
-}
-
-#popupImage {
-    width: 100%;
-    max-height: 380px;
-    object-fit: contain;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    background: #f8fafc;
-}
-
-#popupSteps {
-    margin: 8px 0;
-    line-height: 1.65;
-    color: #1d2939;
-    word-break: break-word;
-}
-
-#popupSteps a {
-    color: #005bd1;
-    font-weight: 500;
-}
-
-#popupDate {
-    color: #667085;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #f3f4f6;
-    color: #334155;
-    border: 1px solid #d8dee8;
-    padding: 0;
-}
-
-.close-btn:hover {
-    background: #e9edf3;
-}
-
-.hidden {
-    display: none !important;
-}
-
-@keyframes cardIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
+function loadProcessesFromStorage() {
+    try {
+        const raw = localStorage.getItem("processes");
+        if (!raw) {
+            return [];
+        }
+
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.error("Failed to parse saved processes:", error);
+        alert("Saved tracker data was corrupted and has been reset.");
+        localStorage.removeItem("processes");
+        return [];
+    }
+}
+
+let processes = loadProcessesFromStorage();
+let chart;
+let currentPage = 1;
+const itemsPerPage = 3;
+let editingIndex = null;
+let activeQuery = "";
+let activeColor = "";
+
+const softwareNameInput = document.getElementById("softwareName");
+const categoryInput = document.getElementById("categoryInput");
+const tagsInput = document.getElementById("tagsInput");
+const stepDetailsInput = document.getElementById("stepDetails");
+const feelingInput = document.getElementById("feeling");
+const imageInput = document.getElementById("stepImage");
+const imageDropZone = document.getElementById("imageDropZone");
+const imagePreview = document.getElementById("imagePreview");
+const removeImageBtn = document.getElementById("removeImageBtn");
+const saveProcessBtn = document.getElementById("saveProcessBtn");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
+const categoryFilterInput = document.getElementById("categoryFilter");
+const tagFilterInput = document.getElementById("tagFilter");
+const restoreInput = document.getElementById("restoreInput");
+const statusBanner = document.getElementById("statusBanner");
+
+let pendingImageData = "";
+let statusBannerTimer;
+
+function showStatus(message, type = "info", timeoutMs = 2800) {
+    if (!statusBanner) {
+        return;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    clearTimeout(statusBannerTimer);
+    statusBanner.textContent = message;
+    statusBanner.classList.remove("hidden", "info", "success", "warning", "error");
+    statusBanner.classList.add(type);
+
+    statusBannerTimer = setTimeout(() => {
+        statusBanner.classList.add("hidden");
+        statusBanner.classList.remove("info", "success", "warning", "error");
+    }, timeoutMs);
+}
+
+function sanitizeStoredData() {
+    processes = processes.map((item) => {
+        const createdAt = item.createdAt || item.timestamp || Date.now();
+        const parsedTags = Array.isArray(item.tags)
+            ? item.tags.map((tag) => String(tag).trim()).filter(Boolean)
+            : parseTags(item.tags || "");
+
+        return {
+            name: item.name || "Untitled Process",
+            category: (item.category || "General").trim(),
+            tags: parsedTags,
+            rawSteps: item.rawSteps || item.steps || "",
+            feeling: item.feeling || "green",
+            date: item.date || new Date(createdAt).toLocaleString(),
+            createdAt,
+            imageData: item.imageData || "",
+        };
+    });
+}
+
+function parseTags(tagText) {
+    return String(tagText || "")
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+        .slice(0, 12);
+}
+
+function escapeHTML(text) {
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function formatTextWithLinks(text) {
+    const escaped = escapeHTML(text);
+    return escaped
+        .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
+        .replace(/\n/g, "<br>");
+}
+
+function renderPreview(imageData) {
+    if (!imagePreview || !removeImageBtn) {
+        return;
     }
+
+    if (!imageData) {
+        imagePreview.classList.add("hidden");
+        imagePreview.innerHTML = "";
+        removeImageBtn.classList.add("hidden");
+        return;
+    }
+
+    imagePreview.classList.remove("hidden");
+    imagePreview.innerHTML = `<img src="${imageData}" alt="Selected preview">`;
+    removeImageBtn.classList.remove("hidden");
+}
+
+function downscaleImage(file, maxWidth = 1280, quality = 0.82) {
+    return new Promise((resolve, reject) => {
+        if (!file.type.startsWith("image/")) {
+            reject(new Error("Please upload a valid image file."));
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+                let width = img.width;
+                let height = img.height;
+                if (width > maxWidth) {
+                    const ratio = maxWidth / width;
+                    width = maxWidth;
+                    height = Math.round(height * ratio);
+                }
+
+                const canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+                resolve(canvas.toDataURL("image/jpeg", quality));
+            };
+            img.onerror = () => reject(new Error("Could not process the selected image."));
+            img.src = reader.result;
+        };
+        reader.onerror = () => reject(new Error("Could not read the selected image."));
+        reader.readAsDataURL(file);
+    });
+}
+
+async function processSelectedFile(file) {
+    if (!file) {
+        return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+        showStatus("Image must be smaller than 8MB.", "warning");
+        alert("Please choose an image smaller than 8MB.");
+        return;
+    }
+
+    try {
+        pendingImageData = await downscaleImage(file);
+        renderPreview(pendingImageData);
+        showStatus("Photo attached.", "success", 1800);
+    } catch (error) {
+        showStatus(error.message, "error", 3600);
+        alert(error.message);
+    }
+}
+
+async function handleImageChange() {
+    if (!imageInput) {
+        return;
+    }
+
+    const file = imageInput.files[0];
+    if (!file) {
+        pendingImageData = editingIndex !== null && processes[editingIndex]
+            ? processes[editingIndex].imageData || ""
+            : "";
+        renderPreview(pendingImageData);
+        return;
+    }
+
+    await processSelectedFile(file);
+}
+
+function removeSelectedImage() {
+    pendingImageData = "";
+    imageInput.value = "";
+    renderPreview("");
+    showStatus("Photo removed.", "info", 1800);
+}
+
+function clearInputs() {
+    if (softwareNameInput) softwareNameInput.value = "";
+    if (categoryInput) categoryInput.value = "";
+    if (tagsInput) tagsInput.value = "";
+    if (stepDetailsInput) stepDetailsInput.value = "";
+    if (feelingInput) feelingInput.value = "green";
+    if (imageInput) imageInput.value = "";
+    pendingImageData = "";
+    renderPreview("");
+}
+
+function setEditingState(isEditing) {
+    if (saveProcessBtn) {
+        saveProcessBtn.textContent = isEditing ? "Update Process" : "Add Process";
+    }
+    if (cancelEditBtn) {
+        cancelEditBtn.classList.toggle("hidden", !isEditing);
+    }
+}
+
+function saveAndRender() {
+    try {
+        localStorage.setItem("processes", JSON.stringify(processes));
+    } catch (error) {
+        if (error && error.name === "QuotaExceededError") {
+            throw new Error("Storage is full. Remove a few large image entries or restore from backup with fewer images.");
+        }
+        throw error;
+    }
+
+    updateCategoryFilterOptions();
+    renderProcesses();
+    updateChart();
+}
+
+function getVisibleProcesses() {
+    const selectedCategory = categoryFilterInput ? categoryFilterInput.value.trim().toLowerCase() : "";
+    const tagQuery = tagFilterInput ? tagFilterInput.value.trim().toLowerCase() : "";
+
+    return processes.filter((item) => {
+        const nameMatch = item.name.toLowerCase().includes(activeQuery);
+        const stepsMatch = item.rawSteps.toLowerCase().includes(activeQuery);
+        const tagsString = item.tags.join(" ").toLowerCase();
+        const tagsMatch = tagsString.includes(activeQuery);
+        const categoryMatch = !selectedCategory || item.category.toLowerCase() === selectedCategory;
+        const colorMatch = !activeColor || item.feeling === activeColor;
+        const tagFilterMatch = !tagQuery || item.tags.some((tag) => tag.toLowerCase().includes(tagQuery));
+        const searchMatch = !activeQuery || nameMatch || stepsMatch || tagsMatch;
+
+        return searchMatch && categoryMatch && colorMatch && tagFilterMatch;
+    });
+}
+
+function renderTags(tags) {
+    if (!tags.length) {
+        return "";
+    }
+
+    return tags
+        .map((tag) => `<span class="meta-pill">#${escapeHTML(tag)}</span>`)
+        .join("");
+}
+
+function renderProcesses() {
+    const list = document.getElementById("processList");
+    const filtered = getVisibleProcesses();
+
+    list.innerHTML = "";
+
+    if (filtered.length === 0) {
+        list.innerHTML = "<p>No matching processes found.</p>";
+        updatePagination(filtered.length);
+        return;
+    }
+
+    const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+    if (currentPage > totalPages) {
+        currentPage = totalPages;
+    }
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedProcesses = filtered.slice(start, end);
+
+    paginatedProcesses.forEach((process) => {
+        const originalIndex = processes.indexOf(process);
+        const card = document.createElement("div");
+        card.className = `process-card ${process.feeling}`;
+
+        const shortSteps = process.rawSteps.length > 120
+            ? `${process.rawSteps.slice(0, 117)}...`
+            : process.rawSteps;
+
+        card.innerHTML = `
+            <div>
+                <strong>${escapeHTML(process.name)}</strong><br>
+                <small>Category: ${escapeHTML(process.category)}</small><br>
+                <small>${escapeHTML(shortSteps)}</small><br>
+                <small>Date: ${escapeHTML(process.date)}</small><br>
+                ${renderTags(process.tags)}
+                ${process.imageData ? `<img class="card-thumb" src="${process.imageData}" alt="${escapeHTML(process.name)} screenshot">` : ""}
+            </div>
+            <div class="card-actions">
+                <button class="view-btn" onclick="viewProcess(${originalIndex})">View</button>
+                <button class="edit-btn" onclick="editProcess(${originalIndex})">Edit</button>
+                <button class="delete-btn" onclick="deleteProcess(${originalIndex})">Delete</button>
+                <button class="download-btn" onclick="downloadStep(${originalIndex})">Download</button>
+            </div>
+        `;
+
+        list.appendChild(card);
+    });
+
+    updatePagination(filtered.length);
+}
+
+function updatePagination(totalItems) {
+    const pageInfo = document.getElementById("pageInfo");
+    const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+
+    if (currentPage > totalPages) {
+        currentPage = totalPages;
+    }
+
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+}
+
+function nextPage() {
+    const totalPages = Math.max(1, Math.ceil(getVisibleProcesses().length / itemsPerPage));
+    if (currentPage < totalPages) {
+        currentPage += 1;
+        renderProcesses();
+    }
+}
+
+function previousPage() {
+    if (currentPage > 1) {
+        currentPage -= 1;
+        renderProcesses();
+    }
+}
+
+async function addProcess() {
+    const name = softwareNameInput ? softwareNameInput.value.trim() : "";
+    const category = categoryInput ? categoryInput.value.trim() || "General" : "General";
+    const tags = parseTags(tagsInput ? tagsInput.value : "");
+    const rawSteps = stepDetailsInput ? stepDetailsInput.value.trim() : "";
+    const feeling = feelingInput ? feelingInput.value : "green";
+
+    if (!name || !rawSteps) {
+        showStatus("Software name and step details are required.", "warning");
+        alert("Please fill out software name and step details.");
+        return;
+    }
+
+    if (imageInput && imageInput.files[0]) {
+        await handleImageChange();
+    }
+
+    const now = Date.now();
+    const record = {
+        name,
+        category,
+        tags,
+        rawSteps,
+        feeling,
+        date: new Date(now).toLocaleString(),
+        createdAt: now,
+        imageData: pendingImageData || "",
+    };
+
+    let previousRecord = null;
+    let previousIndex = -1;
+    const wasEditing = editingIndex !== null;
+
+    if (wasEditing) {
+        previousIndex = editingIndex;
+        previousRecord = { ...processes[editingIndex] };
+        processes[editingIndex] = {
+            ...processes[editingIndex],
+            ...record,
+            createdAt: processes[editingIndex].createdAt,
+            date: processes[editingIndex].date,
+        };
+        editingIndex = null;
+        setEditingState(false);
+    } else {
+        processes.unshift(record);
+    }
+
+    try {
+        currentPage = 1;
+        saveAndRender();
+        clearInputs();
+        showStatus(wasEditing ? "Process updated." : "Process added.", "success");
+    } catch (error) {
+        if (wasEditing && previousRecord) {
+            processes[previousIndex] = previousRecord;
+            editingIndex = previousIndex;
+            setEditingState(true);
+        } else {
+            processes.shift();
+        }
+
+        showStatus(`Unable to save process: ${error.message}`, "error", 4200);
+        alert(`Unable to save process: ${error.message}`);
+        console.error("Failed to add/update process:", error);
+    }
+}
+
+function editProcess(index) {
+    const process = processes[index];
+    if (!process) {
+        return;
+    }
+
+    editingIndex = index;
+    softwareNameInput.value = process.name;
+    categoryInput.value = process.category;
+    tagsInput.value = process.tags.join(", ");
+    stepDetailsInput.value = process.rawSteps;
+    feelingInput.value = process.feeling;
+    pendingImageData = process.imageData || "";
+    imageInput.value = "";
+    renderPreview(pendingImageData);
+    setEditingState(true);
+    softwareNameInput.focus();
+}
+
+function cancelEdit() {
+    editingIndex = null;
+    setEditingState(false);
+    clearInputs();
+    showStatus("Edit canceled.", "info", 1800);
+}
+
+function deleteProcess(index) {
+    processes.splice(index, 1);
+
+    if (editingIndex === index) {
+        cancelEdit();
+    } else if (editingIndex !== null && editingIndex > index) {
+        editingIndex -= 1;
+    }
+
+    saveAndRender();
+    showStatus("Process deleted.", "success", 1800);
+}
+
+function viewProcess(index) {
+    const process = processes[index];
+    if (!process) {
+        return;
+    }
+
+    document.getElementById("popupTitle").textContent = process.name;
+    document.getElementById("popupMeta").innerHTML = `Category: <strong>${escapeHTML(process.category)}</strong><br>Tags: ${process.tags.length ? escapeHTML(process.tags.join(", ")) : "None"}`;
+    document.getElementById("popupSteps").innerHTML = formatTextWithLinks(process.rawSteps);
+    document.getElementById("popupDate").textContent = `Date Added: ${process.date}`;
+
+    const popupImageWrap = document.getElementById("popupImageWrap");
+    const popupImage = document.getElementById("popupImage");
+    if (process.imageData) {
+        popupImage.src = process.imageData;
+        popupImage.alt = `${process.name} screenshot`;
+        popupImageWrap.classList.remove("hidden");
+    } else {
+        popupImageWrap.classList.add("hidden");
+        popupImage.src = "";
+    }
+
+    document.getElementById("popupView").classList.remove("hidden");
+}
+
+function closePopup() {
+    document.getElementById("popupView").classList.add("hidden");
+}
+
+function filterProcesses() {
+    activeQuery = document.getElementById("searchInput").value.trim().toLowerCase();
+    currentPage = 1;
+    renderProcesses();
+}
+
+function filterByColor(color) {
+    activeColor = color;
+    currentPage = 1;
+    renderProcesses();
+}
+
+function resetFilters() {
+    activeQuery = "";
+    activeColor = "";
+    document.getElementById("searchInput").value = "";
+    if (categoryFilterInput) {
+        categoryFilterInput.value = "";
+    }
+    if (tagFilterInput) {
+        tagFilterInput.value = "";
+    }
+    currentPage = 1;
+    renderProcesses();
+}
+
+function sortProcesses() {
+    const option = document.getElementById("sortOptions").value;
+    if (option === "name") {
+        processes.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (option === "rating") {
+        processes.sort((a, b) => a.feeling.localeCompare(b.feeling));
+    } else if (option === "category") {
+        processes.sort((a, b) => a.category.localeCompare(b.category));
+    } else if (option === "newest") {
+        processes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    } else if (option === "oldest") {
+        processes.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+    }
+
+    currentPage = 1;
+    saveAndRender();
+}
+
+function updateCategoryFilterOptions() {
+    if (!categoryFilterInput) {
+        return;
+    }
+
+    const current = categoryFilterInput.value;
+    const categories = [...new Set(processes.map((item) => item.category).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+
+    categoryFilterInput.innerHTML = '<option value="">All Categories</option>';
+    categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        categoryFilterInput.appendChild(option);
+    });
+
+    categoryFilterInput.value = categories.includes(current) ? current : "";
+}
+
+function updateChart() {
+    if (typeof Chart === "undefined") {
+        return;
+    }
+
+    const canvas = document.getElementById("overviewChart");
+    if (!canvas) {
+        return;
+    }
+
+    const counts = { green: 0, yellow: 0, red: 0 };
+    processes.forEach((item) => {
+        if (counts[item.feeling] !== undefined) {
+            counts[item.feeling] += 1;
+        }
+    });
+
+    const ctx = canvas.getContext("2d");
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Good", "Neutral", "Poor"],
+            datasets: [{
+                label: "Task Ratings",
+                data: [counts.green, counts.yellow, counts.red],
+                backgroundColor: ["#2d9f54", "#c89100", "#c84242"],
+            }],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0,
+                    },
+                },
+            },
+        },
+    });
+}
+
+function exportPDF() {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+        showStatus("PDF export library is unavailable.", "error", 3600);
+        alert("PDF library is not available right now. Refresh and try again.");
+        return;
+    }
+
+    if (processes.length === 0) {
+        showStatus("No processes available to export.", "warning");
+        alert("No processes to export.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 12;
+    processes.forEach((process, index) => {
+        const title = `${index + 1}. ${process.name} (${process.feeling.toUpperCase()})`;
+        const meta = `Category: ${process.category} | Tags: ${process.tags.join(", ") || "None"}`;
+        const steps = doc.splitTextToSize(process.rawSteps, 175);
+
+        if (y > 245) {
+            doc.addPage();
+            y = 12;
+        }
+
+        doc.text(title, 10, y);
+        y += 6;
+        doc.text(meta, 10, y);
+        y += 6;
+        doc.text(`Date: ${process.date}`, 10, y);
+        y += 6;
+        doc.text(steps, 10, y);
+        y += steps.length * 5 + 4;
+    });
+
+    doc.save("processes.pdf");
+    showStatus("PDF exported.", "success", 2000);
+}
+
+function downloadStep(index) {
+    const process = processes[index];
+    if (!process) {
+        return;
+    }
+
+    const content = `Name: ${process.name}
+Category: ${process.category}
+Tags: ${process.tags.join(", ") || "None"}
+Feeling: ${process.feeling}
+Date: ${process.date}
+Photo Attached: ${process.imageData ? "Yes" : "No"}
+
+Steps:
+${process.rawSteps}`;
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${process.name.replace(/\s+/g, "_")}_Steps.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showStatus("Process steps downloaded.", "success", 2000);
+}
+
+function downloadAllSteps() {
+    if (processes.length === 0) {
+        showStatus("No steps available to download.", "warning");
+        alert("No steps to download.");
+        return;
+    }
+
+    let content = "";
+    processes.forEach((process, index) => {
+        content += `#${index + 1}
+Name: ${process.name}
+Category: ${process.category}
+Tags: ${process.tags.join(", ") || "None"}
+Feeling: ${process.feeling}
+Date: ${process.date}
+Photo Attached: ${process.imageData ? "Yes" : "No"}
+Steps:
+${process.rawSteps}
+
+-----------------------------\n\n`;
+    });
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "All_Steps.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showStatus("All process steps downloaded.", "success", 2000);
+}
+
+function backupData() {
+    const payload = {
+        app: "process-tracker",
+        version: 2,
+        exportedAt: new Date().toISOString(),
+        processes,
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `process-tracker-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showStatus("Backup exported as JSON.", "success", 2200);
+}
+
+function triggerRestore() {
+    if (!restoreInput) {
+        return;
+    }
+    restoreInput.value = "";
+    restoreInput.click();
+}
+
+function normalizeRestoredRecord(item) {
+    const createdAt = item.createdAt || item.timestamp || Date.now();
+    return {
+        name: String(item.name || "Untitled Process").trim(),
+        category: String(item.category || "General").trim() || "General",
+        tags: Array.isArray(item.tags) ? item.tags.map((tag) => String(tag).trim()).filter(Boolean) : parseTags(String(item.tags || "")),
+        rawSteps: String(item.rawSteps || item.steps || "").trim(),
+        feeling: ["green", "yellow", "red"].includes(item.feeling) ? item.feeling : "green",
+        date: String(item.date || new Date(createdAt).toLocaleString()),
+        createdAt,
+        imageData: typeof item.imageData === "string" ? item.imageData : "",
+    };
+}
+
+function handleRestoreFileChange(event) {
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        try {
+            const data = JSON.parse(reader.result);
+            const restored = Array.isArray(data) ? data : data.processes;
+
+            if (!Array.isArray(restored)) {
+                throw new Error("Backup format is invalid.");
+            }
+
+            const normalized = restored
+                .map((item) => normalizeRestoredRecord(item))
+                .filter((item) => item.name && item.rawSteps);
+
+            if (!normalized.length) {
+                throw new Error("Backup did not contain any valid process records.");
+            }
+
+            const shouldMerge = confirm("Click OK to merge with existing data, or Cancel to replace all existing data.");
+            processes = shouldMerge ? [...normalized, ...processes] : normalized;
+
+            editingIndex = null;
+            setEditingState(false);
+            clearInputs();
+            currentPage = 1;
+            saveAndRender();
+            showStatus(`Restore complete. Loaded ${normalized.length} processes.`, "success", 3200);
+            alert(`Restore complete. Loaded ${normalized.length} process records.`);
+        } catch (error) {
+            showStatus(`Restore failed: ${error.message}`, "error", 4200);
+            alert(`Restore failed: ${error.message}`);
+        }
+    };
+
+    reader.onerror = () => {
+        showStatus("Unable to read selected backup file.", "error", 3600);
+        alert("Unable to read selected backup file.");
+    };
+
+    reader.readAsText(file);
+}
+
+function handleDropEvents() {
+    if (!imageDropZone) {
+        return;
+    }
+
+    ["dragenter", "dragover"].forEach((type) => {
+        imageDropZone.addEventListener(type, (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            imageDropZone.classList.add("drag-over");
+        });
+    });
+
+    ["dragleave", "drop"].forEach((type) => {
+        imageDropZone.addEventListener(type, (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            imageDropZone.classList.remove("drag-over");
+        });
+    });
+
+    imageDropZone.addEventListener("drop", async (event) => {
+        const file = event.dataTransfer.files && event.dataTransfer.files[0];
+        if (!file) {
+            return;
+        }
+
+        await processSelectedFile(file);
+    });
+}
+
+if (imageInput) {
+    imageInput.addEventListener("change", handleImageChange);
+}
+if (restoreInput) {
+    restoreInput.addEventListener("change", handleRestoreFileChange);
+}
+handleDropEvents();
+
+sanitizeStoredData();
+setEditingState(false);
+try {
+    saveAndRender();
+    showStatus("Tracker ready.", "info", 1500);
+} catch (error) {
+    console.error("Initial render failed:", error);
+    showStatus(`App initialization issue: ${error.message}`, "error", 5000);
+    alert(`App initialization issue: ${error.message}`);
 }
