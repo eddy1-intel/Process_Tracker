@@ -505,7 +505,6 @@ canvas {
     color: #991b1b;
     border-color: #fecaca;
 }
-
 @keyframes cardIn {
     from {
         opacity: 0;
